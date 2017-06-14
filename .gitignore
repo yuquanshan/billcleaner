@@ -1,0 +1,4 @@
+*.pyc
+00*
+.DS_Store
+old_stuff

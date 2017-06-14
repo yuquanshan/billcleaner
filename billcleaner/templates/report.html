@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Report Your Expense, {{ user.username }}</h2>
+<p style="color: red">Notice: If the service you purchased which lasted for several days, e.g. car rental, please equaly divide this expense to those days.</p>
+<hr>
+  <form method="post">
+  	{% csrf_token %}
+  	{% for field in form %}
+      <p>
+        {{ field.label_tag }}<br>
+        {{ field }}
+        {{ field.help_text }}
+        {% for error in field.errors %}
+          <p style="color: red">{{ error }}</p>
+        {% endfor %}
+      </p>
+      {% if forloop.counter|divisibleby:2 %}
+        <hr>
+      {% endif %}
+    {% endfor %}
+    <button type="submit">Submit</button>
+  </form>
+{% endblock %}

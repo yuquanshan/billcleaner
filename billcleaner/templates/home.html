@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Welcome, {{ user.username }}!</h2>
+  <h3>Summary of Your Expense:</h3>
+  {% if profile.fri %}
+    <p><blockquote>You spent ${{ profile.frimoney }} on Fri.</blockquote></p>
+  {% endif %}
+  {% if profile.sat %}
+    <p><blockquote>You spent ${{ profile.satmoney }} on Sat.</blockquote></p>
+  {% endif %}
+  {% if profile.sun %}
+    <p><blockquote>You spent ${{ profile.sunmoney }} on Sun.</blockquote></p>
+  {% endif %}
+  {% if profile.mon %}
+    <p><blockquote>You spent ${{ profile.monmoney }} on Mon.</blockquote></p>
+  {% endif %}
+  <h3>What you need to do:</h3>
+  <p><blockquote>{{ profile.actions }}</blockquote></p>
+  <a href="{% url 'report' %}">submit/update report</a>
+  {{ profile.comment }}
+{% endblock %}

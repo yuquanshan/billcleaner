@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Sign up</h2>
+  <form method="post">
+    {% csrf_token %}
+    {% for field in form %}
+      <p>
+        {{ field.label_tag }}<br>
+        {{ field }}
+        {% if forloop.counter == 1 %}
+          <small style="color: grey">Try to use full name so that people can recognize you, e.g. donald_trump</small>
+        {% endif %}
+        {% if forloop.counter == 2 %}
+          <small style="color: grey">Please keep your password in mind</small>
+        {% endif %}
+        {% for error in field.errors %}
+          <p style="color: red">{{ error }}</p>
+        {% endfor %}
+      </p>
+    {% endfor %}
+    <button type="submit">Sign up</button>
+  </form>
+{% endblock %}
